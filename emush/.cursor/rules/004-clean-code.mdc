@@ -1,0 +1,84 @@
+---
+description: APPLY Clean Code principles WHEN writing code TO ensure readability, maintainability, and simplicity
+globs: **/*.php
+---
+# Clean Code Standards for Mush API
+
+<version>1.1.0</version>
+
+## Context
+- These rules apply to all code across the Mush API
+- They ensure code is readable, maintainable, and simple
+- They promote consistent coding practices and reduce technical debt
+- They align with the Domain-Driven Design and Ports & Adapters architecture used in the project
+
+## Requirements
+
+### Code Generation
+- Always use strict typing (`declare(strict_types=1);`)
+- Never use untyped values (`mixed`, `object` etc. are prohibited)
+- Define explicit enums for possible values instead of using magic strings/numbers
+- Write clear and self-documenting conditions
+- No double negatives in conditionals
+- Prioritize readable variable names that reflect domain concepts
+- Use typed arrays with proper docblocks for collections
+
+### Function Design
+- Keep functions small and focused on a single responsibility
+- Limit function length to 20-30 lines maximum, extract until you drop
+- Limit function parameters to 3 or fewer
+- Avoid flag parameters; split into multiple functions instead
+- Follow command-query separation (functions should either do something or return something, but not both)
+- Use verbs for service methods that perform actions (e.g., `establishLinkWithSol` not `linkWithSol`)
+- Services should have focused, single-responsibility interfaces (e.g., having multiple tiny `LoginUserService`, `RegisterUserService`... instead of a giant `UserService`)
+- Services should have a unique method `execute` (or sometimes `generate`, e.g for a `RandomNumber` service. Be smart in naming!)
+
+### Code Organization
+- Organize code by domain concepts (Communications, Player, Action, etc.)
+- Follow Ports & Adapters pattern with clear separation between:
+  - Entity (domain models)
+  - Repository (interfaces and implementations)
+  - Service (application services)
+  - Enum (domain enumerations)
+  - Event (domain events)
+  - Listener (event subscribers)
+  - ValueObject (immutable domain concepts)
+- Keep repository methods focused and well-named
+- Repository interfaces should be in the same namespace as their implementations
+- Entities should use appropriate value objects rather than primitive obsession
+- Favor composition over inheritance
+
+### Testing
+- Follow Given-When-Then pattern in tests
+- Create in-memory repository implementations for unit tests
+- Test service behavior, not implementation details
+- Write descriptive test method names (e.g., `testShouldNotGiveMoralePointsIfJukeboxIsBroken`)
+- Separate test setup into private helper methods with clear naming
+- Ensure tests are independent and don't rely on global state
+- Use context-specific assertions (e.g., `thenPlayerIsInMushChannel`)
+
+### Error Handling
+- Use custom domain exceptions that describe the business rule violation
+- Fail fast: throw exceptions early, avoid returning null or undefined
+- Error messages must be meaningful and should be translatable
+- Use appropriate HTTP status codes in API responses
+
+### Code Duplication
+- Follow the DRY (Don't Repeat Yourself) principle
+- Extract common functionality into reusable services or helpers
+- Create specific value objects for complex domain concepts
+- Use composition over inheritance
+- Create focused, single-responsibility services
+
+## Critical Rules
+
+<critical>
+- NEVER write functions longer than 30 lines
+- ALWAYS organize code by domain concepts following DDD principles
+- NEVER have more than 3 parameters for a function
+- ALWAYS write tests using the Given-When-Then pattern
+- NEVER mix infrastructure concerns (database, HTTP) with domain logic
+- ALWAYS use interfaces for repositories and services to enable testability
+- NEVER use primitive types for domain concepts; create value objects instead
+- NEVER write PHPdocs, nor comments
+</critical>

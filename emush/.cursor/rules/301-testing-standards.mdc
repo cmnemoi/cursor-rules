@@ -1,0 +1,75 @@
+---
+description: APPLY testing standards WHEN writing tests TO ensure comprehensive and maintainable test suites
+globs: apps/**/*.{test,spec}.{js,jsx,ts,tsx}, apps/**/test/**/*
+alwaysApply: false
+---
+
+# Testing Standards
+
+<version>1.1.0</version>
+
+## Context
+- These rules apply to all test code in the Mush project
+- They ensure consistent implementation of testing patterns
+- They promote maintainable, reliable, and behavior-focused test suites
+
+## Requirements
+
+### Test Organization
+- Organize tests by domain/feature in the appropriate directory structure
+- Name tests descriptively using "should" statements that describe behavior
+- Follow the Given-When-Then pattern in unit tests
+- Group related tests by behavior or feature
+- Test real user interactions and behaviors, not implementation details
+
+### PHP Unit Tests (Api/tests/unit)
+- Place tests in directories matching the domain structure (e.g., `Api/tests/unit/Communications/Service/`)
+- Use TestCase as base class for unit tests
+- Use in-memory repositories rather than mocks when possible
+- Extract test steps into descriptive methods following Given-When-Then:
+  - `givenXxx()` for test setup
+  - `whenXxx()` for executing the behavior under test
+  - `thenXxx()` for assertions
+- Test one unit of functionality at a time
+- Test both success and failure paths
+- Keep assertions focused and minimal
+- Use proper test doubles (stubs, fakes, spies) instead of mocks when appropriate
+- Test edge cases and error conditions
+
+### Codeception Functional Tests (Api/tests/functional)
+- Place tests in directories matching the domain structure (e.g., `Api/tests/functional/Action/Actions/`)
+- Use `Cest` suffix for functional test classes (e.g., `ExchangeBodyCest`)
+- Extend `AbstractFunctionalTest` base class
+- Set up common test data in `_before()` method
+- Use descriptive test method names with `should` prefix
+- Group tests by behavior
+- Use explicit step methods for better readability:
+  - `givenXxx()` for preconditions
+  - `whenXxx()` for actions
+  - `thenXxx()` for assertions
+- Keep tests independent and idempotent
+- Focus on integration between components rather than isolated units
+
+### Test Data and Dependencies
+- Create test data in the appropriate setup methods
+- Use factories for creating test entities
+- Use dependency injection for services
+- Avoid database fixtures when possible, prefer programmatic setup
+
+### Test Quality
+- Write tests that validate behavior, not implementation details
+- Use meaningful assertions that focus on behavior outcomes
+- Keep test code DRY by extracting common setup and assertion code
+- Use descriptive test method names that explain the expected behavior
+- All tests must be deterministic and repeatable
+
+## Critical Rules
+
+<critical>
+- NEVER test implementation details, test behaviors instead
+- ALWAYS follow the Given-When-Then pattern in unit tests
+- ALWAYS use descriptive method names for setup, action, and assertion steps
+- ALWAYS test both success and failure scenarios
+- ALWAYS use in-memory repositories over mocks when possible
+- NEVER make tests dependent on each other
+</critical>

@@ -1,0 +1,100 @@
+---
+description: APPLY project-specific rules TO ensure consistent documentation across projects
+globs: **/*
+---
+# Project-Specific Rules Template
+
+<version>1.0.0</version>
+
+## Context
+- This file is used as specification only for this project
+
+## Recommendation
+
+### Languages
+- For code and logs: English
+- For labels: English language in UI and errors
+
+### Overall Architecture
+- *Project structure*: Monorepo with API (PHP/Symfony) and App (Vue.js frontend)
+- *Architectural patterns used*: Domain-Driven Design, Clean Architecture, Command and Query Segregation, and in-memory object repositories for testing
+
+### Authentication
+- *Authentication mechanisms used*: JWT Authentication with Lexik JWT Bundle
+- *External authentication*: Integration with Eternaltwin OAuth
+
+### State Management
+- *State management approach*: Vuex
+- *Organization of stores*: Feature-based stores
+
+### API and Services
+- *Backend structure*: Domain-first organization with bounded contexts in separate folders
+- *API conventions*: RESTful API with API Platform
+
+### Testing
+- *Testing strategy*: Unit tests first with in-memory repositories, functional tests when needed
+- *Testing frameworks*: Codeception for backend, Vitest for frontend
+- *Test patterns*: Given-When-Then and test doubles using in-memory repositories
+
+## Custom for this project
+
+### Backend (PHP/Symfony)
+
+#### Domain Organization
+- The codebase is organized by domain bounded contexts (Action, Alert, Chat, Communications, Daedalus, Disease, Equipment, Game, Hunter, etc.)
+- Each domain has its own set of entities, repositories, services, and interfaces following DDD principles
+
+#### Testing
+- Unit tests use in-memory repositories and service implementations
+- Functional tests use Codeception
+- Tests follow the Given-When-Then pattern with descriptive method names
+
+#### Controllers
+- API controllers handle HTTP requests and return responses
+- Controllers interact with application services that encapsulate domain logic
+
+### Frontend (Vue.js)
+
+#### Structure
+- Vue 3 with TypeScript
+- Phaser for game-related functionality
+- Vue Router for navigation
+- Vuex for state management
+
+#### Testing
+- Vitest for unit tests
+- Test utilities from Vue Test Utils
+
+### Applications and Environment
+
+| Application  | Path  | Description  |
+|----|-----|----|
+| Backend API | `/Api` | Symfony-based PHP API with domain-driven design |
+| Frontend | `/App` | Vue.js frontend application |
+| Docker | `/docker` | Docker configuration for development environment |
+
+### Critical Dependencies
+
+| Package | Application | Description |
+|---|----|----|
+| Symfony 6.4 | Backend | PHP framework for API |
+| Doctrine ORM | Backend | Object-Relational Mapping |
+| Codeception | Backend | PHP testing framework |
+| Vue 3.5 | Frontend | JavaScript framework |
+| TypeScript | Frontend | Type-safe JavaScript |
+| Phaser | Frontend | Game framework |
+| Vuex 4.1 | Frontend | State management |
+| Vite 5.4 | Frontend | Build tool |
+
+## Critical Rules
+
+<critical>
+- ALWAYS follow Domain-Driven Design principles in the backend
+- NEVER bypass established architectural patterns
+- ALWAYS write tests first using in-memory repositories
+- NEVER mix domain logic with infrastructure concerns
+- ALWAYS follow the "Given-When-Then" pattern in tests
+- NEVER use mocks when in-memory repositories can be used
+- ALWAYS ensure services are properly abstracted behind interfaces
+- NEVER duplicate business logic between services
+</critical>

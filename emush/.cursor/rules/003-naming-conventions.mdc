@@ -1,0 +1,92 @@
+---
+description: APPLY naming conventions WHEN writing code TO ensure consistency and clarity across the codebase
+globs: **/*.php
+---
+# Naming Conventions Standards
+
+<version>1.0.0</version>
+
+## Context
+- These rules apply to all code across the PHP backend
+- They ensure consistent and meaningful naming
+- They promote code readability and maintainability
+- They align with PHP best practices and Domain-Driven Design principles
+
+## Requirements
+
+### General Principles
+- Names should be descriptive and reveal intent
+- Names should be searchable and pronounceable
+- Avoid abbreviations except for common ones (e.g., ID, HTTP)
+- Use consistent terminology across the codebase
+- Domain language should be used consistently
+
+### Files and Directories
+- Use PascalCase for PHP class files (e.g., `ProjectFactory.php`)
+- Use PascalCase for directories representing namespaces (e.g., `Project/`, `Factory/`)
+- Group files by domain/feature rather than type (e.g., `Project/`, `Player/`, `Daedalus/`)
+- File names should match the primary class they contain (e.g., `ProjectFactory.php` for `ProjectFactory` class)
+- Test files should follow the pattern `{ClassUnderTest}Test.php` for unit tests
+- Functional tests should follow the pattern `{Feature}Cest.php`
+
+### Namespaces
+- Use PascalCase for namespace components (e.g., `Mush\Project\Factory`)
+- Namespace structure should follow PSR-4 autoloading standards
+- Root namespace should be `Mush` followed by domain/feature name
+- Test namespace should be `Mush\tests` followed by test type and domain (e.g., `Mush\tests\unit\Project`)
+
+### Classes and Interfaces
+- Use PascalCase for class, interface, trait, and enum names (e.g., `ProjectFactory`, `PlayerStatusEnum`)
+- Use nouns or noun phrases for class names
+- Suffix interfaces with `Interface` (e.g., `RoomLogServiceInterface`)
+- Use descriptive suffixes for specific types:
+  - `Factory` for factory classes
+  - `Service` for service classes
+  - `Repository` for repositories
+  - `Subscriber` or `Listener` for event listeners
+  - `Enum` for enumeration classes
+  - `Config` for configuration classes
+  - `Handler` for handlers
+  - `Event` for events
+
+### Methods and Functions
+- Use camelCase for method and function names (e.g., `createNeronProjectByName()`)
+- Use verb or verb phrases for methods that perform actions
+- Prefix unit test (ie. the ones in `tests\unit` folder) methods with `test` (e.g., `testShouldGiveTwoMoralePointsToPlayer()`)
+- Prefix functional test (ie. the ones in `tests\functional` folder) methods with `should` (e.g., `shouldGiveTwoMoralePointsToPlayer()`)
+- Prefix test helper methods with clear intention indicators:
+  - `given` for setup and preconditions
+  - `when` for action execution
+  - `then` for assertions
+
+### Variables and Properties
+- Use camelCase for variable and property names (e.g., `$daedalus`, `$player`)
+- Use meaningful and specific names
+- Avoid single-letter names except for counters or iterators
+- Use plural names for arrays and collections
+
+### Constants
+- Use UPPER_SNAKE_CASE for constants (e.g., `MAX_MORALE_POINTS`)
+- Define constants at the appropriate scope
+- Group related constants in enum classes
+
+### Test Methods
+- Test method names should follow a behavior-driven format, e.g., `testShouldDoSomething()`
+- Test methods can be structured in Given-When-Then format
+- Test helper methods should be clearly named with their purpose, using prefixes like:
+  - `given...` for test setup
+  - `when...` for execution of behavior under test
+  - `then...` for assertions
+
+## Critical Rules
+
+<critical>
+- NEVER use single-letter names except for counters or iterators
+- ALWAYS use descriptive names that reveal intent
+- NEVER mix naming conventions within the same codebase
+- ALWAYS use consistent casing for each type of identifier
+- ALWAYS name test methods to indicate expected behavior
+- ALWAYS name files according to the primary class they contain
+- NEVER abbreviate domain concepts
+- ALWAYS use namespaces to organize code by domain
+</critical>

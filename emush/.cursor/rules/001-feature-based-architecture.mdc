@@ -1,0 +1,469 @@
+---
+description: APPLY Clean Architecture principles WHEN organizing code TO ensure separation of concerns and testability
+globs: **/*.{php, ts, vue}
+---
+# Architecture Standards
+
+<version>1.2.0</version>
+
+## Context
+- These rules apply to the overall architecture of applications in the monorepo
+- They ensure proper separation of concerns
+- They promote testability and maintainability
+- Backend follows a Domain-Driven Design Clean Architecture approach (Entity/Domain, Repository, Service, Controller)
+- Frontend follows Feature-based Architecture principles with Vue components
+
+## Backend Architecture (Clean Architecture)
+
+### Layers
+- Separate code into distinct layers: Entity/Domain, Repository, Service, Controller
+- Ensure dependencies inversion between Repository and Service layer (Service → RepositoryInterface → Repository)
+- Keep the Domain layer independent of frameworks and external concerns
+- Use interfaces to define boundaries between layers
+
+### Entity/Domain Layer
+- Focus on business entities and logic
+- Keep domain models pure and framework-independent
+- Define value objects for complex value types
+- Define repository interfaces in the domain layer
+- Include enum classes to represent domain constants
+- Use ValueObject classes to represent complex immutable values
+
+### Service Layer
+- Implement use cases that orchestrate domain logic
+- Service classes should be focused on a single responsibility
+- Define service interfaces to allow for dependency inversion
+- Use DTOs for data transfer between layers
+- Implement proper validation at this layer
+
+### Repository Layer
+- Implement repository interfaces defined in the domain layer
+- Handle data persistence concerns
+- Keep infrastructure details isolated from business logic
+- Define repository interfaces that match domain needs
+
+### Controller Layer
+- Focus on API concerns and request/response handling
+- Keep presentation logic separate from business logic
+- Use controllers to handle HTTP requests
+- Implement proper error handling and response formatting
+- Return appropriate HTTP status codes based on operation results
+
+### Testing Approach
+- Write unit tests using in-memory implementations of repositories
+- Use the "Given-When-Then" pattern to structure tests
+- Create functional tests for end-to-end testing with real infrastructure
+- Follow TDD methodology to ensure proper test coverage
+- Write tests that test behavior, not implementation details
+
+### Backend Examples
+
+<example>
+// Good: Clean Architecture in practice (Backend)
+
+// Entity Layer
+namespace Mush\Communications\Entity;
+
+class LinkWithSol
+{
+    private int $id;
+    private int $strength;
+    private bool $isEstablished;
+    private int $daedalusId;
+
+    public function __construct(int $daedalusId, int $strength = 0, bool $isEstablished = false)
+    {
+        $this->strength = LinkStrength::create($strength)->value;
+        $this->isEstablished = $isEstablished;
+        $this->daedalusId = $daedalusId;
+    }
+}
+
+// Repository Interface
+namespace Mush\Communications\Repository;
+
+interface LinkWithSolRepositoryInterface
+{
+    public function deleteByDaedalusId(int $daedalusId): void;
+
+    public function findByDaedalusIdOrThrow(int $daedalusId): LinkWithSol;
+
+    public function save(LinkWithSol $linkWithSol): void;
+}
+
+// Service Implementation
+namespace Mush\Communications\Service;
+
+final readonly class EstablishLinkWithSolService
+{
+    public function __construct(
+        private LinkWithSolRepositoryInterface $linkWithSolRepository
+    ) {}
+
+    public function execute(int $daedalusId): void
+    {
+        $linkWithSol = $this->linkWithSolRepository->findByDaedalusIdOrThrow($daedalusId);
+        $linkWithSol->establish();
+        $this->linkWithSolRepository->save($linkWithSol);
+    }
+}
+
+// Controller Implementation
+namespace Mush\User\Controller;
+
+#[Route(path: '/users')]
+final class UserController extends AbstractFOSRestController
+{
+    private UserServiceInterface $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
+    /**
+     * Accept game rules.
+     */
+    #[OA\Tag(name: 'User')]
+    #[SecurityAnnotation(name: 'Bearer')]
+    #[Patch(path: '/accept-rules')]
+    public function acceptRulesEndpoint(User $user): View
+    {
+        $this->denyAccessUnlessGranted(UserVoter::IS_CONNECTED, message: 'You must be connected to accept the rules.');
+
+        $this->userService->acceptRules($user);
+
+        return $this->view(['detail' => 'Rules accepted successfully'], Response::HTTP_OK);
+    }
+}
+</example>
+
+<example type="invalid">
+// Bad: Mixed concerns and no clear architecture (Backend)
+
+// Mixed domain and infrastructure concerns
+class UserService
+{    
+    public function __construct(private EntityManager $entityManager) {}
+    
+    public function getUser($id)
+    {
+        // Direct use of Doctrine entity manager, mixed with buisness logic
+        $user = $this->entityManager->getRepository(User::class)->getRepository(User::class)->find($id);
+        
+        // Business logic mixed with data access
+        if ($user->role === 'admin') {
+            $user->permissions = $this->entityManager->getRepository(User::class)->getConnection()->query('SELECT * FROM permissions WHERE role = ?', ['admin']);
+        }
+        
+        return $user;
+    }
+    
+    // UI concerns mixed with business logic
+    public function formatUserForDisplay($user)
+    {
+        return [
+            'id' => $user->id,
+            'formattedDate' => new \DateTime($user->createdAt)->format('Y-m-d')
+        ];
+    }
+}
+</example>
+
+## Unit Testing Approach
+
+Unit tests should follow the Given-When-Then pattern and use in-memory implementations of repositories. Tests should be focused on behavior, not implementation details.
+
+<example>
+// Good: Unit test using Given-When-Then pattern and in-memory repositories
+namespace Mush\Tests\unit\Communications\Service;
+
+final class KillAllContactingRebelBasesServiceTest extends TestCase
+{
+    private KillAllRebelBaseContactsService $killAllRebelBaseContacts;
+    private InMemoryRebelBaseRepository $rebelBaseRepository;
+    private Daedalus $daedalus;
+
+    protected function setUp(): void
+    {
+        $this->rebelBaseRepository = new InMemoryRebelBaseRepository();
+
+        $this->killAllRebelBaseContacts = new KillAllRebelBaseContactsService(
+            $this->rebelBaseRepository,
+        );
+
+        $this->daedalus = DaedalusFactory::createDaedalus();
+    }
+
+    public function testShouldMarkAllRebelBaseContactsAsFinished(): void
+    {
+        $this->givenTwoContactingRebelBases();
+
+        $this->whenKillingAllContactingRebelBases();
+
+        $this->thenAllRebelBasesContactsShouldHaveEnded();
+    }
+
+    private function givenTwoContactingRebelBases(): void
+    {   
+        for ($i = 0; $i < 2; ++$i) {
+            $rebelBase = new RebelBase(
+                config: RebelBaseConfig::createNull(),
+                daedalusId: $this->daedalus->getId(),
+                contactStartDate: new \DateTimeImmutable(),
+            );
+            $this->rebelBaseRepository->save($rebelBase);
+        }
+    }
+
+    // other similar helper methods
+}
+</example>
+
+<example type="invalid">
+// Bad: Unit test mixing concerns, not using in-memory implementations, not using given-when-then functions and putting multiple assertions in a single test
+
+final class KillAllContactingRebelBasesServiceTest extends TestCase
+{
+    private KillAllRebelBaseContactsService $service;
+    private RebelBaseRepository $mockRepository;
+    private Daedalus $daedalus;
+
+    protected function setUp(): void
+    {
+        $this->mockRepository = $this->createMock(RebelBaseRepository::class);
+        $this->service = new KillAllRebelBaseContactsService($this->mockRepository);
+        $this->daedalus = DaedalusFactory::createDaedalus();
+    }
+
+    public function testKillAllRebelBaseContacts(): void
+    {
+        // Create test data
+        $rebelBase1 = new RebelBase(
+            RebelBaseConfig::createNull(),
+            $this->daedalus->getId(),
+            new \DateTimeImmutable()
+        );
+        $rebelBase2 = new RebelBase(
+            RebelBaseConfig::createNull(),
+            $this->daedalus->getId()
+        );
+
+        // Configure mock
+        $this->mockRepository
+            ->expects($this->once())
+            ->method('findAllByDaedalusId')
+            ->with($this->daedalus->getId())
+            ->willReturn([$rebelBase1, $rebelBase2]);
+
+        // Multiple assertions in one test
+        $this->assertFalse($rebelBase1->contactEnded());
+        $this->assertFalse($rebelBase2->contactEnded());
+
+        // Execute service
+        $this->service->execute($this->daedalus->getId());
+
+        // More assertions
+        $this->assertTrue($rebelBase1->contactEnded());
+        $this->assertFalse($rebelBase2->contactEnded());
+        $this->assertEquals($this->daedalus->getId(), $rebelBase1->getDaedalusId());
+        $this->assertNotNull($rebelBase1->getContactStartDate());
+        $this->assertNull($rebelBase2->getContactStartDate());
+    }
+}
+</example>
+
+## Functional Testing Approach
+
+Functional tests should test end-to-end behavior using real infrastructure components. They should be focused on testing application behavior from a user perspective.
+
+<example>
+// Good: Functional test using Given-When-Then pattern methods
+
+namespace Mush\tests\functional\Action\Actions;
+
+final class ExchangeBodyCest extends AbstractFunctionalTest
+{
+    public function shouldNotBeVisibleIfTargetPlayerIsMush(FunctionalTester $I): void
+    {
+        $this->givenTargetPlayerIsMush();
+
+        $this->whenSourceTriesToExchangeBodyWithTarget();
+
+        $this->thenActionShouldNotBeVisible($I);
+    }
+    
+    private function givenTargetPlayerIsMush(): void
+    {
+        // Setup logic
+    }
+    
+    private function whenSourceExchangesBodyWithTarget(): void
+    {
+        // Setup logic
+    }
+    
+    private function thenActionShouldNotBeVisible(FunctionalTester $I): void
+    {
+        // Assertion logic
+    }
+}
+</example>
+
+## Frontend Architecture (Vue Component-based Architecture)
+
+### Feature Organization
+- Organize code by business features or domains
+- Each feature should be self-contained with its own components
+- Shared components should be placed in a common UI library
+- Features should communicate through well-defined interfaces (Vuex store)
+
+### Component Structure
+- Each component should have a clear single responsibility
+- Keep feature-specific components within the feature directory
+- Follow Vue's recommended component structure (template, script, style)
+- Use typed components with TypeScript
+
+### State Management
+- Use Vuex for global state management
+- Keep state as close as possible to where it's used
+- Use mapActions and mapState/mapGetters for component connections
+- Implement proper state isolation between features
+
+### Frontend Examples
+
+<example>
+// Good: Vue component with proper separation
+
+// App/src/components/Admin/Actions/AdminActionsPage.vue
+<template>
+    <h1>{{ $t('admin.actions.title') }}</h1>
+    <h2>{{$t('admin.actions.equipment.title') }}</h2>
+    <div class="flex-row">
+        <Input :label="$t('admin.actions.equipment.name')" type="text" v-model="createEquipmentDto.equipmentName" />
+        <Input :label="$t('admin.actions.equipment.quantity')" type="number" v-model="createEquipmentDto.quantity" />
+        <Input :label="$t('admin.actions.equipment.place')" type="text" v-model="createEquipmentDto.place" />
+        <button class="action-button" @click="createEquipment(createEquipmentDto)">
+            {{ $t('admin.actions.equipment.create') }}
+        </button>
+    </div>
+    <!-- More template code -->
+</template>
+
+<script lang="ts">
+import Input from "@/components/Utils/Input.vue";
+import { defineComponent } from "vue";
+import { mapActions } from "vuex";
+
+interface CreateEquipmentDto {
+    equipmentName: string;
+    quantity: integer;
+    place: string;
+}
+
+export default defineComponent ({
+    name: 'AdminActionsPage',
+    components: {
+        Input
+    },
+    data() {
+        return {
+            createEquipmentDto: {
+                equipmentName: 'metal_scraps',
+                quantity: 1,
+                place: 'laboratory',
+                daedalus: null
+            },
+            // More data
+        };
+    },
+    methods: {
+        ...mapActions({
+            createEquipmentForOnGoingDaedaluses: 'adminActions/createEquipmentForOnGoingDaedaluses',
+            // More actions
+        }),
+        createEquipment(createEquipmentDto: CreateEquipmentDto) {
+            this.createEquipmentForOnGoingDaedaluses(createEquipmentDto);
+        },
+        // More methods
+    }
+});
+</script>
+
+<style lang="scss" scoped>
+/* Component-specific styles */
+</style>
+</example>
+
+<example type="invalid">
+// Bad: Vue component with mixed concerns
+
+<template>
+  <div>
+    <h1>User Management</h1>
+    <!-- Directly using API endpoints in template -->
+    <div v-if="loading">Loading...</div>
+    <ul>
+      <li v-for="user in users" :key="user.id">
+        {{ user.name }}
+        <button @click="deleteUser(user.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      users: [],
+      loading: false
+    }
+  },
+  // Direct API calls in component
+  created() {
+    this.loading = true
+    fetch('/api/users')
+      .then(res => res.json())
+      .then(data => {
+        this.users = data
+        this.loading = false
+      })
+  },
+  methods: {
+    // Business logic mixed with UI logic
+    deleteUser(id) {
+      if (!confirm('Are you sure?')) return
+      
+      fetch(`/api/users/${id}`, { method: 'DELETE' })
+        .then(() => {
+          this.users = this.users.filter(user => user.id !== id)
+          // Direct DOM manipulation
+          alert('User deleted successfully')
+        })
+    },
+    // Mixing presentation logic with form handling
+    validateForm() {
+      if (!this.newUser.name) {
+        document.getElementById('name').classList.add('error')
+        return false
+      }
+      return true
+    }
+  }
+}
+</script>
+</example>
+
+## Critical Rules
+
+<critical>
+- NEVER allow outer layers to depend on inner layers in backend architecture (Controllers can't import Repositories directly)
+- ALWAYS define repository interfaces in the domain layer
+- NEVER mix business logic with infrastructure concerns
+- ALWAYS write tests following the Given-When-Then pattern
+- NEVER use real databases or external services in unit tests - use in-memory implementations
+- ALWAYS create functional tests for critical user flows
+- ALWAYS organize frontend code by features, not technical concerns
+- NEVER mix feature concerns in frontend components
+</critical>
