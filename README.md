@@ -1,93 +1,204 @@
-# Cursor Rules
+# AI-Driven Dev Rules
 
-Forked from [📐 AI-Driven Dev {Rules}](https://github.com/ai-driven-dev/rules)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Version](https://img.shields.io/badge/version-0.0.3-blue)
+![Contributors](https://img.shields.io/badge/contributors-welcome-orange)
+[![Discord](https://img.shields.io/discord/1173363373115723796?color=7289da&label=discord&logo=discord&logoColor=white)](https://discord.gg/invite/ai-driven-dev)
 
-- [Installation](#installation)
-  - [Comment créer une règle](#comment-créer-une-règle)
-  - [Récupérer les règles de l'AI-Driven Dev](#récupérer-les-règles-de-lai-driven-dev)
-  - [Documentations officielles (Cursor, Windsurf, GitHub Copilot)](#documentations-officielles-cursor-windsurf-github-copilot)
-- [Exemples de règles](#exemples-de-règles)
-  - [.cursor/rules](#cursorrules)
-  - [.cursorrules](#cursorrules-1)
-- [Outils de génération de règles personnalisées](#outils-de-génération-de-règles-personnalisées)
-- [Autres tutoriels pour créer ses règles](#autres-tutoriels-pour-créer-ses-règles)
-- [TODO](#todo)
+Partagez vos règles IA personnalisées avec la communauté.
 
-## Installation
+>
+> Pour celles et ceux qui recherchent le système de KB de Christophe, un dépôt est en cours de création !
+>
 
-Voici des exemples de configuration rules pour Cursor.
+Envie de faire avec nous ?
+[>>> 🔥 REJOINDRE LA CORE TEAM <<<](./CONTRIBUTING.md)
 
-Ces règles sont des instructions pour l'IA de l'éditeur, qui peut être GitHub Copilot, Cursor ou Windsurf.
+## Table des matières
 
-> Note spécifique à Cursor : `.cursorrules`est déprécié, séparez vos règles dans `.cursor/rules/*.mdc`.
+- [Table des matières](#table-des-matières)
+- [🧠 4 minutes pour commencer](#-4-minutes-pour-commencer)
+- [👨‍💻 Comment installer les règles AIDD ?](#-comment-installer-les-règles-aidd-)
+  - [Télécharger l'extension "AI-Driven Dev Rules"](#télécharger-lextension-ai-driven-dev-rules)
+  - [Utiliser l'extension](#utiliser-lextension)
+- [🚀 Bien démarrer](#-bien-démarrer)
+  - [Comment coder avec des règles ?](#comment-coder-avec-des-règles-)
+- [✅ Ajouter vos règles](#-ajouter-vos-règles)
+  - [1. Structure de nommage (à plat)](#1-structure-de-nommage-à-plat)
+  - [2. Organisation des dossiers](#2-organisation-des-dossiers)
+  - [3. Générations et Mises à jour](#3-générations-et-mises-à-jour)
+  - [4. Exemple d'une bonne règle](#4-exemple-dune-bonne-règle)
+  - [Bonus : Démo](#bonus--démo)
+- [🇫🇷 Contributions disponibles](#-contributions-disponibles)
 
-### Comment créer une règle
+## 🧠 4 minutes pour commencer
 
-Pour créer vos propres règles dans Cursor :
+Avantages :
 
-1. Ouvrez `Cursor`, aller dans les `Settings`.
-2. Dans `Project Rules`.
-3. Cliquer sur `+ Add new rule`.
-   1. `Description`: Quand votre règle est appliquée.
-   2. `Globs`: Sur quels fichiers appliquer la règle.
-   3. `Content`: Le contenu de la règle (`markdown` ou `XML`).
-4. Le contenu se retrouvera directement dans des `.cursor/rules/*.mdc`
-   1. <img src="https://alexsoyes.com/wp-content/uploads/2025/02/cursor-project-rules.png" width="500" alt="cursor-rules-settings">
-5. Exemple d'utilisation dans le chat
-   1. <img src="https://alexsoyes.com/wp-content/uploads/2025/02/cursor-chat-rules.png" width="500" alt="cursor-rules-chat">
-6. Vous avez mes règles persos en guise de template.
-7. Enjoy 🙂
+- **Apprendre à générer** des règles IA
+- **Créer des règles optimisées** pour Cursor (partagées et validées par la communauté)
+- **Standard de contribution** pour tous les contributeurs
+- **Ultra simple** et rapide à setup
 
-### Récupérer les règles de l'AI-Driven Dev
+Workflow :
 
-Ces règles sont des templates pour vous aider à configurer vos propres règles.
+```mermaid
+flowchart LR
+    classDef titleClass fill:none,stroke:none,color:#333333,font-size:16px,font-weight:bold
+    title[Extension VS Code pour récupération des règles depuis GitHub]
+    class title titleClass
+    
+    A[Extension VS Code] -->|1| B[Connexion GitHub<br>+ Token optionnel]
+    B -->|2| C[Récupération de la<br>structure du dépôt]
+    C -->|3| D[Sélection et téléchargement<br>des fichiers/règles]
+    D -->|4| E[Utilisation des règles<br>dans l’IDE]
+    
+    style A fill:#4b89dc,stroke:#2e5daa,color:white,stroke-width:2px,border-radius:10px,font-weight:bold
+    style B fill:#2ecc71,stroke:#27ae60,color:white,stroke-width:2px,border-radius:10px,font-weight:bold
+    style C fill:#9b59b6,stroke:#8e44ad,color:white,stroke-width:2px,border-radius:10px,font-weight:bold
+    style D fill:#f39c12,stroke:#e67e22,color:white,stroke-width:2px,border-radius:10px,font-weight:bold
+    style E fill:#e74c3c,stroke:#c0392b,color:white,stroke-width:2px,border-radius:10px,font-weight:bold
+    
+    linkStyle 0,1,2,3 stroke-width:2px,stroke:#888888,color:black
+```
 
-*Nous travaillons actuellement à les rendre templatisables pour tous les projets.*
+## 👨‍💻 Comment installer les règles AIDD ?
 
-1. Dans ce dépôt, récupérez le dossier `.cursor/rules`.
-2. Ajustez-les pour VOTRE projet.
-3. Supprimez les règles / langages qui ne vous intéressent pas.
-4. Ajoutez vos propres règles.
-5. Partagez vos règles avec la communauté.
-6. Codez 2x plus vite.
+### Télécharger l'extension "AI-Driven Dev Rules"
 
-### Documentations officielles (Cursor, Windsurf, GitHub Copilot)
+1. Télécharger la dernière version [ai-driven-dev-rules-0.0.3.vsix](https://github.com/ai-driven-dev/rules/blob/main/vscode/ai-driven-dev-rules/ai-driven-dev-rules-0.0.3.vsix)
+2. Ouvrir Cursor
+3. Dans la palette de commandes (`Ctrl + Shift + P`)
+4. Taper `Extension: Install from VSIX`
+5. Installer l'extension et cliquer sur le nouvelle icône GitHub !
 
-Les règles sont fortement poussé par Anysphere (Cursor) mais vous pouvez les utiliser sur d'autres IDEs comme Windsurf ou GitHub Copilot.
+Problèmes connus :
 
-Voici les documentations officielles pour les règles / instructions :
+> L'API de GitHub est open mais vous pouvez vous faire Rate Limit.
 
-- [GitHub Copilot](https://docs.github.com/fr/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot?tool=vscode)
-- [Cursor](https://docs.cursor.com/context/rules-for-ai)
-  - [Cursor Forum : Mémoire dans Cursor](https://forum.cursor.com/t/rules-for-ultra-context-memories-lessons-scratchpad-with-plan-and-act-modes/48792/21?page=2)
-- [Windsurf (+ mémoire)](https://docs.codeium.com/windsurf/memories)
-  - [Windsurf directory](https://codeium.com/windsurf/directory) - Un ensemble de règles de la communauté par langage de programmation.
+1. Récupérer un Token sur GitHub [https://github.com/settings/tokens](https://github.com/settings/tokens).
+2. AUCUN ROLE NÉCESSAIRE.
+3. Dans VSCode, ouvrir les Réglages.
+4. Rechercher: `Aidd: GitHub Token`.
+5. **Rajouter votre Token pour éviter une réponse HTTP 429**
 
-## Exemples de règles
+### Utiliser l'extension
 
-Si vous cherchez de l'inspiration pour vos règles.
+1. Ouvrir l'extension "AI-Driven Dev Rules" via l'icône GitHub
+2. Cliquer sur le bouton `Add Repository` (ou utilisez directement notre dépôt ⭐ Featured)
+3. Télécharger le dossier `.cursor/rules`.
 
-### .cursor/rules
+## 🚀 Bien démarrer
 
-- [alexsoyes](https://github.com/ai-driven-dev/le-journal/tree/main/.cursor/rules) - TypeScript : Remix + NestJS (🔐 privé pour les membres de l'AI-Driven Dev)
-- [giak](https://github.com/giak/cv-generator/tree/main/.cursor/rules) - Vue 3
-- [Melvynx](https://github.com/Melvynx/cursor.rules) - TypeScript : React + NextJS
-- [mckaywrigley](https://github.com/mckaywrigley/mckays-app-template/tree/main/.cursor/rules) - TypeScript : React + NextJS
+### Comment coder avec des règles ?
 
-### .cursorrules
+1. Ouvrir le mode Agent de votre IDE (comme Cursor).
+2. Donner du contexte avec votre prompt: `use real users in @admin.tsx from @users.controller.ts`.
+3. L'agent crée les règles correspondantes AVEC VOUS.
 
-- [awesome cursor rules](https://github.com/PatrickJS/awesome-cursorrules) - Une liste de règles pour Cursor.
-- [cursor.directory](https://cursor.directory/rules) - Un ensemble de règles de la communauté par langage de programmation
-- [devin.cursorules](https://github.com/grapeot/devin.cursorrules/blob/master/.cursorrules) - Transformer son IDE en agent IA (comme Devin qui coûte 400$/mois)
-- [mckaywrigley](https://github.com/mckaywrigley/mckays-app-template/blob/main/.cursorrules) - Projet de démo full AI stack (Next, Tailwind, Vercel, Supabase...)
+Bonus:
 
-## Outils de génération de règles personnalisées
+> Demander à l'agent s'il a bien respecté les règles.
 
-- [Cursor Focus (fork)](https://github.com/RenjiYuusei/CursorFocus) - Màj votre projet toutes les 60 secondes avec des règles IA en fonction du code que vous tapez.
-- [Cursor Auto Rules (Agile workflow)](https://github.com/bmadcode/cursor-auto-rules-agile-workflow/) - Outil de génération de règle Cursor.
-- [UltraContextAI](https://github.com/T1nker-1220/UltraContextAI) - Crée un système de mémoire avec un agent pour développer des features via un Architecte IA (respecte le flow AIDD, mais dans L'IDE)
+```markdown
+Vérifie l'application des règles.
+```
 
-## Autres tutoriels pour créer ses règles
+## ✅ Ajouter vos règles
 
-- [Créer une règle Cursor](https://notes.switchdimension.com/cursor-ai-rules) - Page Notion de Rob Shocks pour vous montrer comment créer une règle Cursor.
-- [Comment générer des règles pour son projet](https://www.youtube.com/watch?v=jEhvwYkI-og) - Vidéo de 15 minutes pour générer des règles pour votre projet.
+Contribuer aux règles AI-Driven Dev est TRÈS simple et direct.
+
+### 1. Structure de nommage (à plat)
+
+Stockage flat dans `.cursor/rules`.
+
+Nom des règles :
+
+```text
+#-rule-name[@version][-specificity].mdc
+```
+
+- `#` : Numéro de la catégorie (voir ci-dessous)
+- `-rule-name` : Nom de la règle
+- `@version` : Version de la règle (*optionnel*)
+- `-specificity` : Sous-partie spécifique (*optionnel*)
+- `.mdc` : Extension pour Cursor
+
+### 2. Organisation des dossiers
+
+Les règles sont organisées par dossiers, chaque dossier représentant une catégorie.
+
+| Numéro | Catégorie | Exemples |
+| ------ | --------- | -------- |
+| `00` | 🏛️ `architecture` | Clean, Onion, 3-tiers... |
+| `01` | 📏 `standards` | Coding, Naming, formatting, structure |
+| `02` | 💻 `programming-languages` | JavaScript, TypeScript, Python |
+| `03` | 🛠️ `frameworks-and-libraries` | React, Vue, Angular, Next.js |
+| `04` | ⚙️ `tools-and-configurations` | Git, ESLint, Webpack, Docker |
+| `05` | 🔄 `workflows-and-processes` | PR reviews, deployment, CI/CD |
+| `06` | 📋 `templates-and-models` | Project templates, PRDs, READMEs |
+| `07` | ✅ `quality-assurance` | Testing, security, performance |
+| `08` | 🎯 `domain-specific-rules` | À partager avec votre équipe |
+| `09` | 🔍 `other` | Ne rentre dans aucune autre catégorie |
+
+Exemples :
+
+```text
+./.cursor/rules/03-frameworks-and-libraries/
+├── 3-react.mdc
+├── 3-react@18.mdc
+├── 3-react@19.mdc
+├── 3-react@19-hook.mdc
+└── 3-react@19.1-hook.mdc
+```
+
+### 3. Générations et Mises à jour
+
+1. Ouvrir un chat **en mode Agent**.
+2. Choisir le modèle `GPT 4.1`.
+3. Ajouter la Cursor Rules `meta-generator.mdc`.
+4. Promptez !
+
+**Créer une nouvelle règle :**
+
+```markdown
+Generate cursor rules for: ...
+```
+
+**Créer une nouvelle règle (depuis un example) :**
+
+```markdown
+Based on example, generate cursor rules for: ...
+
+<example>
+...
+</example>
+```
+
+**Mettre à jour une règle existante :**
+
+```markdown
+Update cursor rules with: ...
+
+@3-react@18.mdc
+```
+
+### 4. Exemple d'une bonne règle
+
+Les règles générées doivent être le plus court possible.
+
+Exemple : [./.cursor/rules/01-standards/1-clean-code.mdc](./.cursor/rules/01-standards/1-clean-code.mdc)
+
+### Bonus : Démo
+
+Demain...Vendredi 18 avril 2025.
+
+## 🇫🇷 Contributions disponibles
+
+Vous pouvez contribuer à ce projet en :
+
+- Partager ses règles
+- Améliorer les règles existantes
+- Maintenir l'extension VSCode
+
+[>>> 🔥 REJOINDRE LA CORE TEAM <<<](./CONTRIBUTING.md)
