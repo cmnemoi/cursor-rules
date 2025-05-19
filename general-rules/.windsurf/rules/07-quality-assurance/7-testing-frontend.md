@@ -6,7 +6,7 @@ globs: apps/frontend/**/*.spec.*, apps/frontend/**/*.test.*, apps/frontend/**/te
 
 Test Doubles:
 - Only external dependencies (API, browser) should be replaced by test doubles (fakes, stubs)
-- Mocks only in absolutely necessary.
+- Mocks only when absolutely necessary.
 
 Error Handling:
 - Test error throwing mechanisms.

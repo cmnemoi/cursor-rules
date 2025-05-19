@@ -13,6 +13,10 @@ Error Handling:
 - Use specific exceptions for error handling
 - Avoid catching broad exceptions like Exception
 
+Functions:
+- Prefix non-public functions and methods with an underscore
+- Put non-public functions at the end of the file
+
 Code Structure:
 - Use dataclasses for simple data structures
 - Prefer NamedTuple for immutable data structures

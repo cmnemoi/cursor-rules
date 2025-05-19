@@ -21,7 +21,8 @@ Test Structure:
 - Keep assertions focused and minimal
 
 Test Data:
-- Use in-memory repositories over mocks
+- Use in-memory repositories over mocks in unit tests
+- In integration and E2E tests, use the real dependencies
 - Create test data in setup methods
 - Use factories for test entities
 

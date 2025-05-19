@@ -4,6 +4,9 @@ description: APPLY integration testing standards to verify interactions between 
 globs: apps/**/*.integration.*
 ---
 
+Integration Tests:
+- Should run with real dependencies, do not use test doubles
+
 Test Structure:
 - Name test methods using `should` prefix
 - Split test setup into `given` methods

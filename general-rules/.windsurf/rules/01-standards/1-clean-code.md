@@ -9,8 +9,8 @@ Code Quality:
 - Use explicit enums for possible values.
 - Avoid double negatives and ensure conditions are self-documenting.
 - Use long, readable variable names reflecting domain concepts.
-- Write the simplest code possible
-- liminate duplication (DRY).
+- Write the simplest code possible.
+- Eliminate duplication (DRY).
 
 Length Limits:
 - Max 20 lines per function : extract until you drop.
@@ -33,5 +33,5 @@ Errors:
 - Log errors in English with error codes.
 
 Code Organization:
-- Follow Ports & Adapters pattern with clear separation between entities, repositories, services, enums, events, listeners, and value objects.
+- Follow Ports & Adapters pattern with clear separation between domain and infrastructure concerns.
 - Favor composition over inheritance.
