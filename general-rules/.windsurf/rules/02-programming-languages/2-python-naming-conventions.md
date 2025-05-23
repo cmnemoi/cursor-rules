@@ -1,6 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY Python naming conventions WHEN writing Python code to ensure consistency, readability, and maintainability across the codebase.
+globs: *.py
 ---
 
 Classes and Exceptions:

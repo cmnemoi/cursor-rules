@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY Clean Architecture principles WHEN organizing code in backend
-globs: **/*.php
+globs: *.php, *.ts, *.py
 ---
 
 # Layers Overview

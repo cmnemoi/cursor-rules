@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY PHP 8 best practices WHEN writing PHP code to ensure type safety, readability, and maintainability
-globs: **/*.php
+globs: *.php
 ---
 
 Strict Types:

@@ -1,6 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY Python 3.13 best practices WHEN writing Python code to ensure type safety, readability, and maintainability.
+globs: *.py
 ---
 
 Type Annotations:

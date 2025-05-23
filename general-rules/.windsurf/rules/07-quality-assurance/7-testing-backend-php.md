@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: Apply PHP backend testing standards to ensure reliable, maintainable test suites that focus on behavior verification and proper test isolation WHEN writing tests for PHP backend
-globs: ["Api/tests/unit/**/*Test.php", "Api/tests/functional/**/*Cest.php"]
+globs: ["*Test.php", "*Cest.php"]
 ---
 
 Test Organization:

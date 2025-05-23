@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY feature based architecture WHEN organizing code in frontend
-globs: apps/frontend/**
+globs: *.vue, *.tsx
 ---
 
 - Use smart/dumb component pattern

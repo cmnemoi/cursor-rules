@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY PHP naming conventions WHEN writing PHP code to ensure consistency, readability, and maintainability across the codebase
-globs: **/*.php
+globs: *.php
 ---
 
 Classes:

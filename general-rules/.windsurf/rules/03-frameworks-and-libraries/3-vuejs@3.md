@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: Apply Vue.js 3 best practices for component structure, state management, options API, and testability in Vue components. Ensures maintainability, performance, and separation of concerns across the application.
-globs: App/src/**/*.vue
+globs: *.vue, *.ts
 ---
 
 Component Structure:

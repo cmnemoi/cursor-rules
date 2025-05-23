@@ -1,7 +1,7 @@
 ---
-trigger: model_decision
+trigger: glob
 description: Apply frontend testing standards for UI reliability and state management when writing frontend tests or modifying stores. Focus on test doubling boundaries, error handling, and state verification.
-globs: apps/frontend/**/*.spec.*, apps/frontend/**/*.test.*, apps/frontend/**/tests/*, apps/frontend/**/__tests__/*
+globs: *.spec.*, *.test.*, **/tests/*, **/__tests__/*
 ---
 
 Test Doubles:

@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY general testing standards for clarity and consistency WHEN writing any test. Covers organization, naming, and core principles like Given/When/Then.
-globs: apps/**/*.spec.*, apps/**/*.test.*
+globs: **/*.spec.*, **/*.test.*, **/*test_*, **/*Test*, **/*Cest*
 ---
 
 Organization:

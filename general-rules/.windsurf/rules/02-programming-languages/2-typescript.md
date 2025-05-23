@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY TypeScript best practices WHEN writing TypeScript code
-globs: **/*.ts, **/*/.tsx
+globs: *.ts, *.tsx, *.vue
 ---
 
 Strict Types:

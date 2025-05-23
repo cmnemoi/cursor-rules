@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY Symfony 6.4 framework standards WHEN developing backend applications to ensure maintainability, performance, and adherence to best practices
-globs: Api/src/**/*.php
+globs: *.php
 ---
 
 Architecture:

@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: Apply SCSS/SASS best practices when writing stylesheets to ensure maintainability, readability, and performance. Focus on proper nesting, variable usage, mixins, and organization for consistent styling across the application.
-globs: App/src/**/*.scss, App/src/**/*.vue
+globs: *.scss, *.vue, *.css, *.tsx
 ---
 
 File Organization:

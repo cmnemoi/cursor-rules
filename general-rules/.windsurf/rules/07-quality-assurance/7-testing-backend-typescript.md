@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: Apply TypeScript backend testing standards for maintainability and reliability WHEN writing TypeScript backend tests. Focus on setup/teardown hooks and avoiding repetition.
-globs: apps/backend/**/*.spec.*, apps/backend/**/*.test.*
+globs: *.spec.*, *.test.*
 ---
 
 Setup and Teardown:

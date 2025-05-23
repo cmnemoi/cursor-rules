@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY TypeScript naming conventions WHEN writing code (files, variables, functions etc)
-globs: **/*.ts, **/*/.tsx
+globs: *.ts, *.tsx, *.vue
 ---
 
 Classes and Interfaces:

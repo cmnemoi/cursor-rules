@@ -1,7 +1,7 @@
 ---
-trigger: model_decision
+trigger: glob
 description: APPLY integration testing standards to verify interactions between components/services WHEN writing integration tests.
-globs: apps/**/*.integration.*
+globs: **/integration/*, *Cest*
 ---
 
 Integration Tests:

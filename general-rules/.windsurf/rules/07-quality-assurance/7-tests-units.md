@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY unit testing standards to verify behavior of individual classes and services WHEN writing unit tests. Focus on Given-When-Then pattern, test doubles, and comprehensive test cases.
-globs: Api/tests/unit/**/*Test.php
+globs: **/unit/*
 ---
 
 Test Structure:

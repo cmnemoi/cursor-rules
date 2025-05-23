@@ -1,7 +1,6 @@
 ---
 trigger: model_decision
-description: 
-globs: 
+description: APPLY WHEN fixing a bug
 ---
 
 How to find a bug:

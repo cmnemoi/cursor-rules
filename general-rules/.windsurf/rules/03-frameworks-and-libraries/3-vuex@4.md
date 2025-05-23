@@ -1,7 +1,7 @@
 ---
 trigger: model_decision
 description: APPLY Vuex 4 state management patterns WHEN managing application state to ensure testability, maintainability, and proper separation of concerns in Vue applications
-globs: App/src/store/**/*.ts
+globs: *.ts, *.vue
 ---
 
 Store Organization:
