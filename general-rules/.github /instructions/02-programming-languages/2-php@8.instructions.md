@@ -8,6 +8,7 @@ Strict Types:
 - Type all properties, parameters, and return types
 - Use union types instead of docblocks
 - Use nullable types with `?` prefix
+- Never use `mixed` or `object` types
 
 Classes and Functions:
 - Make classes `final` by default
