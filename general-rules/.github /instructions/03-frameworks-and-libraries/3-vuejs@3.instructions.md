@@ -1,5 +1,5 @@
 ---
-applyTo: "*.vue"
+applyTo: "**/*.vue"
 description: "Apply Vue.js 3 best practices for component structure, state management, options API, and testability in Vue components. Ensures maintainability, performance, and separation of concerns across the application."
 ---
 

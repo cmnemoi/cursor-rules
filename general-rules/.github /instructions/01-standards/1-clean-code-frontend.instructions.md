@@ -1,6 +1,6 @@
 ---
 description: "APPLY feature based architecture WHEN organizing code in frontend"
-applyTo: "*.ts, *.vue, *.tsx"
+applyTo: "**/*.ts, **/*.vue, **/*.tsx"
 ---
 
 - Use smart/dumb component pattern

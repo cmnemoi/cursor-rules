@@ -1,5 +1,5 @@
 ---
-applyTo: "*.vue, *.ts"
+applyTo: "**/*.vue, **/*.ts"
 description: "APPLY Vuex 4 state management patterns WHEN managing application state to ensure testability, maintainability, and proper separation of concerns in Vue applications"
 ---
 

@@ -1,5 +1,5 @@
 ---
-applyTo: "*.php, *.ts, *.py"
+applyTo: "**/*.php, **/*.ts, **/*.py"
 description: "APPLY TDD WHEN writing developping a feature, fixing a bug or refactoring code"
 ---
 

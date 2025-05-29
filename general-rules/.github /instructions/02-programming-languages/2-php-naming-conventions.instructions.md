@@ -1,5 +1,5 @@
 ---
-applyTo: "*.php"
+applyTo: "**/*.php"
 description: "APPLY PHP naming conventions WHEN writing PHP code to ensure consistency, readability, and maintainability across the codebase"
 ---
 

@@ -1,5 +1,5 @@
 ---
-applyTo: "package.json, composer.json, pyproject.toml"
+applyTo: "**/package.json, **/composer.json, **/pyproject.toml"
 description: "APPLY package installation rules WHEN installation new package"
 ---
 

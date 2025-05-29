@@ -1,5 +1,5 @@
 ---
-applyTo: "*.css, *.vue, *.tsx, *tailwind.css"
+applyTo: "**/*.css, **/*.vue, **/*.tsx, **/tailwind.css"
 description: "Apply Tailwind CSS v4.1 standards for modern CSS development, focusing on CSS-based configuration, updated utility/variant syntax, and removal of deprecated features when writing CSS or using Tailwind utilities in various frameworks."
 ---
 

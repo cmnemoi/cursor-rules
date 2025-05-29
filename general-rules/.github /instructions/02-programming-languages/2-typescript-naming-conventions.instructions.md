@@ -1,5 +1,5 @@
 ---
-applyTo: "*.ts, *.tsx, *.vue"
+applyTo: "**/*.ts, **/*.tsx, **/*.vue"
 description: "APPLY TypeScript naming conventions WHEN writing code (files, variables, functions etc)"
 ---
 

@@ -1,5 +1,5 @@
 ---
-applyTo: "composer.json"
+applyTo: "**/composer.json"
 description: "Apply Composer best practices WHEN managing PHP dependencies to ensure maintainability, performance, and proper package management across the application"
 ---
 

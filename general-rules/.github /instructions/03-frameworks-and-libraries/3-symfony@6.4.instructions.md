@@ -1,5 +1,5 @@
 ---
-applyTo: "*.php"
+applyTo: "**/*.php"
 description: "APPLY Symfony 6.4 framework standards WHEN developing backend applications to ensure maintainability, performance, and adherence to best practices"
 ---
 

@@ -1,5 +1,5 @@
 ---
-applyTo: ".php, .ts, .py"
+applyTo: "**/*.php, **/*.ts, **/*.py"
 description: "APPLY Clean Architecture principles WHEN organizing code in backend"
 ---
 

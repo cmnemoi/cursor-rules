@@ -1,5 +1,5 @@
 ---
-applyTo: "*.ts, *.tsx, *.vue"
+applyTo: "**/*.ts, **/*.tsx, **/*.vue"
 description: "APPLY TypeScript best practices WHEN writing TypeScript code"
 ---
 

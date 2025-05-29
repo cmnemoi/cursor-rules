@@ -1,5 +1,5 @@
 ---
-applyTo: "*.ts, *.vue, *.tsx"
+applyTo: "**/*.ts, **/*.vue, **/*.tsx"
 description: "APPLY feature based architecture WHEN organizing code in frontend"
 ---
 

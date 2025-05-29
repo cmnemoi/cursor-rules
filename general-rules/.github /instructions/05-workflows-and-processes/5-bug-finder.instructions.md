@@ -1,5 +1,5 @@
 ---
-applyTo: "*.php, *.ts, *.py, *.vue"
+applyTo: "**/*.php, **/*.ts, **/*.py, **/*.vue"
 description: "APPLY WHEN fixing bugs"
 ---
 
