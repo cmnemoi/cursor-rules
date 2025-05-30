@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: APPLY integration testing standards to verify interactions between components/services WHEN writing integration tests.
-globs: apps/**/*.integration.*
-origin: .windsurf/rules/07-quality-assurance/7-tests-integration.md
+globs: **/*Cest.php,**/tests/integration/**
+alwaysApply: false
 ---
 
 Test Structure:

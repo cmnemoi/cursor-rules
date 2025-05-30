@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: APPLY feature based architecture WHEN organizing code in frontend
-globs: apps/frontend/**
-origin: .windsurf/rules/00-architecture/0-feature-based-architecture.md
+globs: *.tsx,*.vue,*.ts
+alwaysApply: false
 ---
 
 # Feature Organization

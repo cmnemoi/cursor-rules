@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
-description: Apply PHP backend testing standards to ensure reliable, maintainable test suites that focus on behavior verification and proper test isolation WHEN writing tests for PHP backend
-globs: ["Api/tests/unit/**/*Test.php", "Api/tests/functional/**/*Cest.php"]
-origin: .windsurf/rules/07-quality-assurance/7-testing-backend-php.md
+description: 
+globs: **/*Test.php,**/*Cest.php
+alwaysApply: false
 ---
 
 Test Organization:

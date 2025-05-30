@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
-description: APPLY general testing standards for clarity and consistency WHEN writing any test. Covers organization, naming, and core principles like Given/When/Then.
-globs: apps/**/*.spec.*, apps/**/*.test.*
-origin: .windsurf/rules/07-quality-assurance/7-testing-standards.md
+description: 
+globs: **/*.spec.ts,**/*.test.ts,**/*Test.php,**/*Cest.php,**/test_*.py
+alwaysApply: false
 ---
 
 Organization:

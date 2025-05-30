@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: Apply Composer best practices WHEN managing PHP dependencies to ensure maintainability, performance, and proper package management across the application
-globs: Api/**/*.php
-origin: .windsurf/rules/04-tools-and-configurations/4-composer.md
+globs: composer.json
+alwaysApply: false
 ---
 
 Package Management:

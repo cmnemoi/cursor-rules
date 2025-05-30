@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: APPLY TypeScript best practices WHEN writing TypeScript code
-globs: **/*.ts, **/*/.tsx
-origin: .windsurf/rules/02-programming-languages/2-typescript.md
+globs: **/*.ts, **/*/.tsx,*.vue
+alwaysApply: false
 ---
 
 Strict Types:

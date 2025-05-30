@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: APPLY Vuex 4 state management patterns WHEN managing application state to ensure testability, maintainability, and proper separation of concerns in Vue applications
-globs: App/src/store/**/*.ts
-origin: .windsurf/rules/03-frameworks-and-libraries/3-vuex@4.md
+globs: *.ts,*.vue
+alwaysApply: false
 ---
 
 Store Organization:

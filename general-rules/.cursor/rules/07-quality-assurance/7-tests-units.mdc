@@ -1,10 +1,8 @@
 ---
-trigger: model_decision
 description: APPLY unit testing standards to verify behavior of individual classes and services WHEN writing unit tests. Focus on Given-When-Then pattern, test doubles, and comprehensive test cases.
-globs: Api/tests/unit/**/*Test.php
-origin: .windsurf/rules/07-quality-assurance/7-tests-units.md
+globs: **/*Test.php,**/*_test.py,**/*.spec.ts,**/*.test.ts
+alwaysApply: false
 ---
-
 Test Structure:
 - Use Given-When-Then pattern in test method names and comments
 - One test method per scenario

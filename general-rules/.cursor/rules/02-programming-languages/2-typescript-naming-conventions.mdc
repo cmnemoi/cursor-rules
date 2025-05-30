@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: APPLY TypeScript naming conventions WHEN writing code (files, variables, functions etc)
-globs: **/*.ts, **/*/.tsx
-origin: .windsurf/rules/02-programming-languages/2-typescript-naming-conventions.md
+globs: **/*.ts, **/*/.tsx,*.vue
+alwaysApply: false
 ---
 
 Classes and Interfaces:
