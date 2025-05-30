@@ -17,6 +17,7 @@ Code Structure:
 - Use dataclasses for simple data structures
 - Prefer NamedTuple for immutable data structures
 - Put non-public functions and methods at the bottom of the file
+- Prefix non-public functions and methods by an underscore (`_`)
 
 Enumerations:
 - Use Enum for enumerations
