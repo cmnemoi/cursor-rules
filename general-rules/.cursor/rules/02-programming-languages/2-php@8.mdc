@@ -1,8 +1,7 @@
 ---
-trigger: model_decision
 description: APPLY PHP 8 best practices WHEN writing PHP code to ensure type safety, readability, and maintainability
 globs: **/*.php
-origin: .windsurf/rules/02-programming-languages/2-php@8.md
+alwaysApply: false
 ---
 
 Strict Types:
@@ -17,6 +16,7 @@ Classes and Functions:
 - Make immutable classes `readonly`
 - Use named arguments for clarity
 - Use attribute validation over manual checks
+- Put private methods at the bottom of the file
 
 Nullability:
 - Return early to avoid nested conditionals
