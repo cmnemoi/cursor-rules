@@ -21,7 +21,7 @@ Test Structure:
 - Keep assertions focused and minimal
 
 Test Data:
-- Use in-memory repositories over mocks
+- Use in-memory repositories and gateways over mocks
 - Create test data in setup methods
 - Use factories for test entities
 
@@ -30,3 +30,9 @@ Test Quality:
 - Test both success and failure paths
 - Keep tests independent and deterministic
 - Test edge cases and error conditions
+
+Testing strategy:
+- Unit tests should use test doubles and focus on business logic
+- Integration tests should use real dependencies and test the adapter without business logic
+- End to End tests should test that business code and infrastructure code is wired properly and focus on happy path, with all real dependencies
+

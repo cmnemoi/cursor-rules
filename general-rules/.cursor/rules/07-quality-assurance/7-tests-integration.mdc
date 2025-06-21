@@ -4,6 +4,8 @@ globs: **/*Cest.php,**/tests/integration/**
 alwaysApply: false
 ---
 
+Goal: Testing production adapters (repositories, gateways) outside business logic
+
 Test Structure:
 - Name test methods using `should` prefix
 - Split test setup into `given` methods
@@ -15,6 +17,7 @@ Test Setup:
 - Use dependency injection for services
 - Initialize test entities in setup
 - Store test entities as class properties
+- Use real dependencies
 
 Test Scenarios:
 - Test one scenario per method

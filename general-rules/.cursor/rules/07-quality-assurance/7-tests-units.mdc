@@ -1,8 +1,10 @@
 ---
 description: APPLY unit testing standards to verify behavior of individual classes and services WHEN writing unit tests. Focus on Given-When-Then pattern, test doubles, and comprehensive test cases.
-globs: **/*Test.php,**/*_test.py,**/*.spec.ts,**/*.test.ts
+globs: **/*Test.php,**/*_test.py,**/*.spec.ts,**/*.test.ts,**/tests/unit/**
 alwaysApply: false
 ---
+Goal : Exhaustively testing business logic without infrastrcuture concerns
+
 Test Structure:
 - Use Given-When-Then pattern in test method names and comments
 - One test method per scenario
@@ -10,7 +12,7 @@ Test Structure:
 - Group test cases using data providers
 
 Test Doubles:
-- Use fakes in memory repositories for persistence layer
+- Use fakes in memory repositories / gateways for persistence and external services
 - Use spies for event dispatching verification
 - Use stubs for simple dependencies
 

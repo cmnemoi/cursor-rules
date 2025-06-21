@@ -1,5 +1,5 @@
 ---
-description: APPLY TDD WHEN writing developping a feature, fixing a bug or refactoring code
+description: APPLY WHEN investigating a bug
 globs: 
 alwaysApply: false
 ---
