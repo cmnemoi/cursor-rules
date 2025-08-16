@@ -1,0 +1,1 @@
+Rules inspired from https://github.com/gaetan-puleo/expenses-tracker-specs-demo?tab=readme-ov-file#-specification-driven-development-with-claude-code for [eMush](https://gitlab.com/cmnemoi/eMush) project.
